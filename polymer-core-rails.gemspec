@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["alchapone@yandex.ru"]
   spec.summary       = %q{Polymer core elements for using in Ruby on Rails application}
   spec.description   = %q{Polymer core elements}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/alchapone/polymer-core-rails"
   spec.license       = "MIT"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
