@@ -7,8 +7,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="web-animations.html">
+<%= html_import_tag "core-animation/web-animations" %>
 
 <!--
 @group Polymer Core Elements
@@ -80,7 +79,7 @@ Elements that are targets to a `core-animation` are given the `core-animation-ta
        /**
         *
         * Fired when the web animation object changes.
-        * 
+        *
         * @event core-animation-change
         */
 
@@ -143,7 +142,7 @@ Elements that are targets to a `core-animation` are given the `core-animation-ta
 
           /**
            * Controls the effect the animation has on the target when it's not playing.
-           * The possible values are "none", "forwards", "backwards", "both" or "auto". 
+           * The possible values are "none", "forwards", "backwards", "both" or "auto".
            *
            * "none" means the animation has no effect when it's not playing.
            *

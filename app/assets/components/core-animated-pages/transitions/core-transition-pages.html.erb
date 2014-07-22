@@ -7,9 +7,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link href="../../polymer/polymer.html" rel="import">
-<link href="../../core-style/core-style.html" rel="import">
-<link href="../../core-transition/core-transition.html" rel="import">
+<%= html_import_tag "core-style/core-style" %>
+<%= html_import_tag "core-transition/core-transition" %>
 
 <!--
 
@@ -126,7 +125,7 @@ Polymer({
     }
 
     var name = this.calcStyleName();
-    
+
     if (!scope._pageTransitionStyles[name]) {
       this.installStyleInScope(scope, name);
       scope._pageTransitionStyles[name] = true;

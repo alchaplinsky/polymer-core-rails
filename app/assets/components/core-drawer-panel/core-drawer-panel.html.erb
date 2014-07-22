@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--
 `core-drawer-panel` contains a drawer panel and a main panel.  The drawer
 and the main panel are side-by-side with drawer on the left.  When browser
-window size is smaller than the `responsiveWidth`, `core-drawer-panel` 
+window size is smaller than the `responsiveWidth`, `core-drawer-panel`
 changes to narrow layout.  In narrow layout, the drawer will be stacked on top
 of the main panel.  The drawer will be slided in/out to hide/reveal the main
 panel.
@@ -24,7 +24,7 @@ Example:
       <div drawer> Drawer panel... </div>
       <div main> Main panel... </div>
     </core-drawer-panel>
-    
+
 To position the drawer to the right, add `right-drawer` to the class list.
 
     <core-drawer-panel class="right-drawer">
@@ -37,13 +37,13 @@ To position the drawer to the right, add `right-drawer` to the class list.
 @homepage github.io
 -->
 
-<link rel="import" href="../core-media-query/core-media-query.html">
-<link rel="import" href="../core-selector/core-selector.html">
+<%= html_import_tag "core-media-query/core-media-query" %>
+<%= html_import_tag "core-selector/core-selector" %>
 
 <polymer-element name="core-drawer-panel">
 <template>
 
-  <link rel="stylesheet" href="core-drawer-panel.css">
+  <%= stylesheet_link_tag "core-drawer-panel/core-drawer-panel" %>
 
   <core-media-query query="max-width: {{responsiveWidth}}" queryMatches="{{queryMatches}}"></core-media-query>
 
@@ -53,7 +53,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
       <content select="[main]"></content>
       <div id="scrim" on-tap="{{togglePanel}}"></div>
     </div>
-    
+
     <div id="drawer">
       <content select="[drawer]"></content>
     </div>
@@ -66,7 +66,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
   Polymer('core-drawer-panel', {
     /**
      * Fired when the narrow layout changes.
-     * 
+     *
      * @event core-responsive-change
      * @param {Object} detail
      * @param {boolean} detail.narrow true if the panel is in narrow layout.
@@ -81,7 +81,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
        * @default '640px'
        */
       responsiveWidth: '640px',
-      
+
       /**
        * The panel that is being selected. `drawer` for the drawer panel and
        * `main` for the main panel.
@@ -91,9 +91,9 @@ To position the drawer to the right, add `right-drawer` to the class list.
        * @default null
        */
       selected: {value: null, reflect: true},
-      
+
       /**
-       * The panel to be selected when `core-drawer-panel` changes to narrow 
+       * The panel to be selected when `core-drawer-panel` changes to narrow
        * layout.
        *
        * @attribute defaultSelected
@@ -101,7 +101,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
        * @default 'main'
        */
       defaultSelected: 'main',
-    
+
       /**
        * Returns true if the panel is in narrow layout.  This is useful if you
        * need to show/hide elements based on the layout.
@@ -112,9 +112,9 @@ To position the drawer to the right, add `right-drawer` to the class list.
        */
       narrow: {value: false, reflect: true}
     },
-    
+
     transition: false,
-    
+
     domReady: function() {
       // to avoid transition at the beginning e.g. page loads
       // NOTE: domReady is already raf delayed and delaying another frame
@@ -127,11 +127,11 @@ To position the drawer to the right, add `right-drawer` to the class list.
     togglePanel: function() {
       this.selected = this.selected === 'main' ? 'drawer' : 'main';
     },
-    
+
     openDrawer: function() {
       this.selected = 'drawer';
     },
-    
+
     closeDrawer: function() {
       this.selected = 'main';
     },

@@ -6,11 +6,10 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<%= html_import_tag "core-transition/core-transition" %>
+<%= html_import_tag "core-overlay/core-key-helper" %>
+<%= html_import_tag "core-overlay/core-overlay-layer" %>
 
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../core-transition/core-transition.html">
-<link rel="import" href="core-key-helper.html">
-<link rel="import" href="core-overlay-layer.html">
 
 <!--
 The `core-overlay` element displays overlayed on top of other content. It starts
@@ -18,14 +17,14 @@ out hidden and is displayed by setting its `opened` property to true.
 A `core-overlay's` opened state can be toggled by calling the `toggle`
 method.
 
-The `core-overlay` will, by default, show/hide itself when it's opened. The 
-`target` property may be set to another element to cause that element to 
+The `core-overlay` will, by default, show/hide itself when it's opened. The
+`target` property may be set to another element to cause that element to
 be shown when the overlay is opened.
 
 It's common to want a `core-overlay` to animate to its opened
 position. The `core-overlay` element uses a `core-transition` to handle
-animation. The default transition is `core-transition-fade` which 
-causes the overlay to fade in when displayed. See 
+animation. The default transition is `core-transition-fade` which
+causes the overlay to fade in when displayed. See
 <a href="../core-transition/">`core-transition`</a> for more
 information about customizing a `core-overlay's` opening animation. The
 `backdrop` property can be set to true to show a backdrop behind the overlay
@@ -47,8 +46,8 @@ presses the escape key. This behavior can be turned off via the
       <button core-overlay-toggle>OK</button>
     </core-overlay>
 
-`core-overlay` will automatically size and position itself according to the 
-following rules. If the target's style.top and style.left are unset, the 
+`core-overlay` will automatically size and position itself according to the
+following rules. If the target's style.top and style.left are unset, the
 target will be centered. The size of the target is constrained to be no larger
 than the window dimensions. The `margin` property specifies the extra amount
 of space that should be reserved around the overlay. This can be used to ensure
@@ -91,7 +90,7 @@ Fired when the `core-overlay`'s `opened` property changes.
 
     publish: {
       /**
-       * The target element that will be shown when the overlay is 
+       * The target element that will be shown when the overlay is
        * opened. If unspecified, the core-overlay itself is the target.
        *
        * @attribute target
@@ -102,11 +101,11 @@ Fired when the `core-overlay`'s `opened` property changes.
 
 
       /**
-       * A `core-overlay`'s size is guaranteed to be 
+       * A `core-overlay`'s size is guaranteed to be
        * constrained to the window size. To achieve this, the sizingElement
-       * is sized with a max-height/width. By default this element is the 
+       * is sized with a max-height/width. By default this element is the
        * target element, but it can be specifically set to a specific element
-       * inside the target if that is more appropriate. This is useful, for 
+       * inside the target if that is more appropriate. This is useful, for
        * example, when a region inside the overlay should scroll if needed.
        *
        * @attribute sizingTarget
@@ -114,7 +113,7 @@ Fired when the `core-overlay`'s `opened` property changes.
        * @default the target element
        */
       sizingTarget: null,
-    
+
       /**
        * Set opened to true to show an overlay and to false to hide it.
        * A `core-overlay` may be made initially opened by setting its
@@ -134,7 +133,7 @@ Fired when the `core-overlay`'s `opened` property changes.
        * @attribute backdrop
        * @type boolean
        * @default false
-       */    
+       */
       backdrop: false,
 
       /**
@@ -145,7 +144,7 @@ Fired when the `core-overlay`'s `opened` property changes.
        * @default false
       */
       layered: false,
-    
+
       /**
        * By default an overlay will close automatically if the user
        * taps outside it or presses the escape key. Disable this
@@ -180,8 +179,8 @@ Fired when the `core-overlay`'s `opened` property changes.
 
       /**
        * A `core-overlay` target's size is constrained to the window size.
-       * The `margin` property specifies a pixel amount around the overlay 
-       * that will be reserved. It's useful for ensuring that, for example, 
+       * The `margin` property specifies a pixel amount around the overlay
+       * that will be reserved. It's useful for ensuring that, for example,
        * a shadow displayed outside the target will always be visible.
        *
        * @attribute margin
@@ -191,8 +190,8 @@ Fired when the `core-overlay`'s `opened` property changes.
       margin: 0,
 
       /**
-       * The transition property specifies a string which identifies a 
-       * <a href="../core-transition/">`core-transition`</a> element that 
+       * The transition property specifies a string which identifies a
+       * <a href="../core-transition/">`core-transition`</a> element that
        * will be used to help the overlay open and close. The default
        * `core-transition-fade` will cause the overlay to fade in and out.
        *
@@ -210,7 +209,7 @@ Fired when the `core-overlay`'s `opened` property changes.
       'keydown': 'keydownHandler',
       'core-transitionend': 'transitionend'
     },
-    
+
     registerCallback: function(element) {
       this.layer = document.createElement('core-overlay-layer');
       this.keyHelper = document.createElement('core-key-helper');
@@ -225,7 +224,7 @@ Fired when the `core-overlay`'s `opened` property changes.
       Platform.flush();
     },
 
-    /** 
+    /**
      * Toggle the opened state of the overlay.
      * @method toggle
      */
@@ -233,7 +232,7 @@ Fired when the `core-overlay`'s `opened` property changes.
       this.opened = !this.opened;
     },
 
-    /** 
+    /**
      * Open the overlay. This is equivalent to setting the `opened`
      * property to true.
      * @method open
@@ -242,8 +241,8 @@ Fired when the `core-overlay`'s `opened` property changes.
       this.opened = true;
     },
 
-    /** 
-     * Close the overlay. This is equivalent to setting the `opened` 
+    /**
+     * Close the overlay. This is equivalent to setting the `opened`
      * property to false.
      * @method close
      */
@@ -468,12 +467,12 @@ Fired when the `core-overlay`'s `opened` property changes.
     positionTarget: function() {
       // vertically and horizontally center if not positioned
       if (this._shouldPosition.top) {
-        var t = Math.max((window.innerHeight - 
+        var t = Math.max((window.innerHeight -
             this.target.offsetHeight - this.margin*2) / 2, this.margin);
         this.target.style.top = t + 'px';
       }
       if (this._shouldPosition.left) {
-        var l = Math.max((window.innerWidth - 
+        var l = Math.max((window.innerWidth -
             this.target.offsetWidth - this.margin*2) / 2, this.margin);
         this.target.style.left = l + 'px';
       }
@@ -499,9 +498,9 @@ Fired when the `core-overlay`'s `opened` property changes.
         }
       }
     },
-    
+
     // We use the traditional approach of capturing events on document
-    // to to determine if the overlay needs to close. However, due to 
+    // to to determine if the overlay needs to close. However, due to
     // ShadowDOM event retargeting, the event target is not useful. Instead
     // of using it, we attempt to close asynchronously and prevent the close
     // if a tap event is immediately heard on the target.
@@ -524,7 +523,7 @@ Fired when the `core-overlay`'s `opened` property changes.
 
     /**
      * Extensions of core-overlay should implement the `resizeHandler`
-     * method to adjust the size and position of the overlay when the 
+     * method to adjust the size and position of the overlay when the
      * browser window resizes.
      * @method resizeHandler
      */
@@ -608,11 +607,11 @@ Fired when the `core-overlay`'s `opened` property changes.
       setZ(overlay, null);
     }
   }
-  
+
   function applyOverlayZ(overlay, aboveZ) {
     setZ(overlay.target, aboveZ + 2);
   }
-  
+
   function setZ(element, z) {
     element.style.zIndex = z;
   }
@@ -620,9 +619,9 @@ Fired when the `core-overlay`'s `opened` property changes.
   function currentOverlay() {
     return overlays[overlays.length-1];
   }
-  
+
   var DEFAULT_Z = 10;
-  
+
   function currentOverlayZ() {
     var z;
     var current = currentOverlay();
@@ -634,7 +633,7 @@ Fired when the `core-overlay`'s `opened` property changes.
     }
     return z || DEFAULT_Z;
   }
-  
+
   function focusOverlay() {
     var current = currentOverlay();
     if (current) {

@@ -43,7 +43,7 @@ Example:
       <div>Content goes here...</div>
     </core-header-panel>
 
-If you want to use other than `core-toolbar` for the header, add 
+If you want to use other than `core-toolbar` for the header, add
 `core-header` class to that element.
 
 Example:
@@ -60,25 +60,24 @@ Use `mode` to control the header and scrolling behavior.
 @homepage github.io
 -->
 
-<link rel="import" href="../polymer/polymer.html">
 
 <polymer-element name="core-header-panel">
 <template>
 
-  <link rel="stylesheet" href="core-header-panel.css">
-  
+  <%= stylesheet_link_tag "core-header-panel/core-header-panel" %>
+
   <div id="outerContainer" on-scroll="{{scroll}}" vertical layout>
 
     <content id="headerContent" select="core-toolbar, .core-header"></content>
 
     <div id="mainPanel" flex vertical layout>
-    
+
       <div id="mainContainer" flex?="{{mode !== 'cover'}}" on-scroll="{{scroll}}">
         <content id="mainContent" select="*"></content>
       </div>
-      
+
       <div id="dropShadow"></div>
-      
+
     </div>
 
   </div>
@@ -91,20 +90,20 @@ Use `mode` to control the header and scrolling behavior.
     publish: {
       /**
        * Controls header and scrolling behavior. Options are
-       * `standard`, `seamed`, `waterfall`, `waterfall-tall`, 
+       * `standard`, `seamed`, `waterfall`, `waterfall-tall`,
        * `waterfall-medium-tall`, `scroll` and `cover`.
        * Default is `standard`.
        *
-       * `standard`: The header is a step above the panel. The header will consume the 
-       * panel at the point of entry, preventing it from passing through to the 
+       * `standard`: The header is a step above the panel. The header will consume the
+       * panel at the point of entry, preventing it from passing through to the
        * opposite side.
        *
        * `seamed`: The header is presented as seamed with the panel.
        *
-       * `waterfall`: Similar to standard mode, but header is initially presented as 
+       * `waterfall`: Similar to standard mode, but header is initially presented as
        * seamed with panel, but then separates to form the step.
        *
-       * `waterfall-tall`: The header is initially taller (`tall` class is added to 
+       * `waterfall-tall`: The header is initially taller (`tall` class is added to
        * the header).  As the user scrolls, the header separates (forming an edge)
        * while condensing (`tall` class is removed from the header).
        *
@@ -122,7 +121,7 @@ Use `mode` to control the header and scrolling behavior.
        *         margin: 60px 60px 60px 0;
        *       }
        *     </style>
-       * 
+       *
        *     <core-header-panel mode="cover">
        *       <core-appbar class="tall">
        *         <core-icon-button icon="menu"></core-icon-button>
@@ -135,7 +134,7 @@ Use `mode` to control the header and scrolling behavior.
        * @default ''
        */
       mode: {value: '', reflect: true},
-      
+
       /**
        * The class used in waterfall-tall mode.  Change this if the header
        * accepts a different class for toggling height, e.g. "medium-tall"
@@ -145,7 +144,7 @@ Use `mode` to control the header and scrolling behavior.
        * @default 'tall'
        */
       tallClass: 'tall',
-      
+
       /**
        * If true, the drop-shadow is always shown no matter what mode is set to.
        *
@@ -155,7 +154,7 @@ Use `mode` to control the header and scrolling behavior.
        */
       shadow: false,
     },
-    
+
     domReady: function() {
       this.async('scroll');
     },
@@ -167,26 +166,26 @@ Use `mode` to control the header and scrolling behavior.
     get header() {
       return this.$.headerContent.getDistributedNodes()[0];
     },
-    
+
     scroll: function() {
       var shadowMode = {'waterfall': 1, 'waterfall-tall': 1};
       var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
       var tallMode = {'waterfall-tall': 1};
-      
+
       var main = this.$.mainContainer;
       var header = this.header;
-      
+
       var sTop = main.scrollTop;
       var atTop = sTop === 0;
-      
+
       if (header) {
         this.$.dropShadow.classList.toggle('hidden', !this.shadow &&
             (atTop && shadowMode[this.mode] || noShadow[this.mode]));
-        
+
         if (tallMode[this.mode]) {
           header.classList.toggle(this.tallClass, atTop);
         }
-        
+
         header.classList.toggle('animate', tallMode[this.mode]);
       }
     }

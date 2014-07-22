@@ -7,7 +7,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link href="core-transition-pages.html" rel="import">
+<%= html_import_tag "core-animated-pages/transitions/core-transition-pages" %>
 
 <core-style id="hero-transition">
   /* Hide heroes that are not currently transitioning */
@@ -113,8 +113,8 @@ You can configure the duration of the hero transition with the global variable
         TRANSFORM_CSSNAME
       ];
 
-      var duration = options && options.duration || 
-          (CoreStyle.g.transitions.heroDuration || 
+      var duration = options && options.duration ||
+          (CoreStyle.g.transitions.heroDuration ||
           CoreStyle.g.transitions.duration);
 
       scope._heroes.forEach(function(h) {
@@ -217,7 +217,7 @@ You can configure the duration of the hero transition with the global variable
 
     // carefully look into ::shadow with polyfill specific hack
     findInShadows: function(node, selector) {
-      return node.querySelector(selector) || (hasShadowDOMPolyfill ? 
+      return node.querySelector(selector) || (hasShadowDOMPolyfill ?
           Platform.queryAllShadows(node, selector) :
           node.querySelector('::shadow ' + selector));
     },

@@ -28,14 +28,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * @class core-menu-button
  */
 -->
-<link href="../polymer/polymer.html" rel="import">
-<link href="../core-icon-button/core-icon-button.html" rel="import">
-<link href="../core-menu/core-menu.html" rel="import">
-<link href="../core-overlay/core-overlay.html" rel="import">
+
+<%= html_import_tag "core-icon-button/core-icon-button" %>
+<%= html_import_tag "core-menu/core-menu" %>
+<%= html_import_tag "core-overlay/core-overlay" %>
 
 <polymer-element name="core-menu-button" attributes="icon label src selected opened halign valign valueattr multi inlineMenu">
   <template>
-    <link rel="stylesheet" href="core-menu-button.css">
+
+    <%= stylesheet_link_tag "core-menu-button/core-menu-button"%>
+
     <core-overlay target="{{$.overlay}}" opened="{{opened}}" layered?="{{!inlineMenu}}"></core-overlay>
     <core-icon-button id="button" on-tap="{{toggle}}" src="{{src}}" icon="{{icon}}" active="{{opened}}"><span>{{label}}</span></core-icon-button>
     <div id="overlay" halign="{{halign}}" valign="{{valign}}">
@@ -93,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       opened: false,
       /**
-       * Set to true to cause the menu popup to be displayed inline rather 
+       * Set to true to cause the menu popup to be displayed inline rather
        * than in its own layer.
        * @attribute inlineMenu
        * @type boolean

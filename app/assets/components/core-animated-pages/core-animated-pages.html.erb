@@ -1,7 +1,6 @@
-<link href="../core-selector/core-selector.html" rel="import">
-
-<link href="transitions/hero-transition.html" rel="import">
-<link href="transitions/cross-fade.html" rel="import">
+<%= html_import_tag "core-selector/core-selector" %>
+<%= html_import_tag "core-animated-pages/transitions/hero-transition" %>
+<%= html_import_tag "core-animated-pages/transitions/cross-fade" %>
 
 <!--
 
@@ -71,8 +70,8 @@ In general, a transition is applied to elements marked with a certain attribute.
 Among the transitions included with `core-animated-pages`, script-based transitions such as
 `hero-transition` generally look for elements up to one level of shadowRoot from the
 `core-animated-pages` element, and CSS-based transitions such as `cross-fade` look for elements
-within any shadowRoot within the `core-animated-pages` element. This means you can use 
-custom elements as pages and mark elements in their shadowRoots as heroes, or mark 
+within any shadowRoot within the `core-animated-pages` element. This means you can use
+custom elements as pages and mark elements in their shadowRoots as heroes, or mark
 elements in deeper shadowRoots with other transitions.
 
 Example:
@@ -163,7 +162,7 @@ Dynamically setting up transitions
 ----------------------------------
 
 An easy way to dynamically set up transitions dynamically is to use property binding on
-the transition attributes. 
+the transition attributes.
 
 Example:
 
@@ -220,7 +219,7 @@ Fired when a page transition completes.
 
 <template>
 
-  <link href="core-animated-pages.css" rel="stylesheet">
+  <%= stylesheet_link_tag "core-animated-pages/core-animated-pages" %>
 
   <shadow></shadow>
 
@@ -309,7 +308,7 @@ Fired when a page transition completes.
       if (this.transitioning.indexOf(dst) === -1) {
         this.transitioning.push(dst);
       }
-      // force src, dst to display 
+      // force src, dst to display
       src.setAttribute('animate', '');
       dst.setAttribute('animate', '');
       //
@@ -361,7 +360,7 @@ Fired when a page transition completes.
 
       this.fire('core-animated-pages-transition-end');
     },
-    
+
     transitionEnd: function(e) {
       if (this.transitioning.length) {
         var completed = true;

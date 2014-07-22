@@ -76,13 +76,11 @@ Fired when the inputValue of this text input changes and passes validation.
 @param {Object} detail
 @param {string} value The text input's inputValue.
 -->
-<link href="../polymer/polymer.html" rel="import">
-
 <polymer-element name="core-input">
 
   <template>
 
-    <link href="core-input.css" rel="stylesheet">
+    <%= stylesheet_link_tag "core-input/core-input"%>
 
     <template if="{{multiline}}">
       <textarea id="input" value="{{inputValue}}" rows="{{rows}}" fit?="{{rows === 'fit'}}" disabled?="{{disabled}}" placeholder="{{placeholder}}" required?="{{required}}" readonly?="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}"></textarea>
@@ -107,7 +105,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default ''
          */
         placeholder: '',
-  
+
         /**
          * If true, this input cannot be focused and the user cannot change
          * its value.
@@ -117,7 +115,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default false
          */
         disabled: false,
-  
+
         /**
          * Set the input type. Not supported for `multiline`.
          *
@@ -144,7 +142,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default false
          */
         required: false,
-        
+
         /**
          * If true, this input accepts multi-line input like a `<textarea>`
          *
@@ -153,7 +151,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default false
          */
         multiline: false,
-  
+
         /**
          * (multiline only) The height of this text input in rows. The input
          * will scroll internally if more input is entered beyond the size
@@ -166,7 +164,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default 'fit'
          */
         rows: 'fit',
-  
+
         /**
          * The current value of this input. Changing inputValue programmatically
          * will cause value to be out of sync. Instead, change value directly
@@ -177,7 +175,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default ''
          */
         inputValue: '',
-  
+
         /**
          * The value of the input committed by the user, either by changing the
          * inputValue and blurring the input, or by hitting the `enter` key.
@@ -187,7 +185,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default ''
          */
         value: '',
-  
+
         /**
          * If this property is not null, the text input's inputValue will be
          * validated. You can validate the value with either a regular expression
@@ -202,14 +200,14 @@ Fired when the inputValue of this text input changes and passes validation.
          * Example:
          *
          *     // valid only if the value is a number
-         *     <core-input validate="^[0-9]*$"></core-input> 
-         * 
+         *     <core-input validate="^[0-9]*$"></core-input>
+         *
          *     // valid only if the value is a number
          *     this.$.input.validate = /^[0-9]*$/;
          *
          *     this.$.input2.validate = function(value) {
          *         // valid only if the value is 'foo'
-         *         return value === 'foo';  
+         *         return value === 'foo';
          *     }
          *
          * @attribute validate
@@ -217,7 +215,7 @@ Fired when the inputValue of this text input changes and passes validation.
          * @default null
          */
         validate: null,
-  
+
         /**
          * If this property is true, the text input's inputValue failed validation.
          *
@@ -227,7 +225,7 @@ Fired when the inputValue of this text input changes and passes validation.
          */
         invalid: false,
       },
-      
+
       validateValue: function() {
         var valid = true;
 

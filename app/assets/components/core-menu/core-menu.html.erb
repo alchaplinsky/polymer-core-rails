@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <core-item icon="dialog" label="Dialog"></core-item>
       <core-item icon="search" label="Search"></core-item>
     </core-menu>
-    
+
 When an item is selected the `core-selected` class is added to it.  The user can
 use the class to add more stylings to the selected item.
 
@@ -55,8 +55,8 @@ The `core-select` event signals selection change.
 @extends core-selector
 -->
 
-<link rel="import" href="../core-selector/core-selector.html">
+<%= html_import_tag "core-selector/core-selector" %>
 
-<link rel="stylesheet" href="core-menu.css" shim-shadowdom>
+<%= stylesheet_link_tag "core-list/core-list", "shim-shadowdom" => true %>
 
 <polymer-element name="core-menu" extends="core-selector" noscript></polymer-element>

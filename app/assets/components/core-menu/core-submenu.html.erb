@@ -11,20 +11,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 Use to create nested menus inside of `core-menu` elements.
 
     <core-menu selected="0">
-    
+
       <core-submenu icon="settings" label="Topics">
         <core-item label="Topic 1"></core-item>
         <core-item label="Topic 2"></core-item>
       </core-submenu>
-      
+
       <core-submenu icon="settings" label="Favorites">
         <core-item label="Favorite 1"></core-item>
         <core-item label="Favorite 2"></core-item>
         <core-item label="Favorite 3"></core-item>
       </core-submenu>
-      
+
     </core-menu>
-    
+
 There is a margin set on the submenu to indent the items.
 You can override the margin by doing:
 
@@ -37,14 +37,14 @@ You can override the margin by doing:
 @extends core-item
 -->
 
-<link rel="import" href="../core-item/core-item.html">
-<link rel="import" href="../core-menu/core-menu.html">
-<link rel="import" href="../core-collapse/core-collapse.html">
+<%= html_import_tag "core-item/core-item" %>
+<%= html_import_tag "core-menu/core-menu" %>
+<%= html_import_tag "core-collapse/core-collapse" %>
 
 <polymer-element name="core-submenu" attributes="selected selectedItem label icon src valueattr">
 <template>
 
-  <link rel="stylesheet" href="core-submenu.css">
+  <%= stylesheet_link_tag "core-menu/core-submenu"%>
 
   <core-item src="{{src}}" label="{{label}}" icon="{{icon}}" class="{{ {'core-selected' : active} | tokenList}}" on-tap="{{activate}}">
     <content select=".item-content"></content>
@@ -88,7 +88,7 @@ You can override the margin by doing:
         this.unselectAllItems();
       }
     },
-    
+
     toggle: function() {
       this.opened = !this.opened;
     },
@@ -99,7 +99,7 @@ You can override the margin by doing:
         this.unselectAllItems();
       }
     }
-    
+
   });
 
 </script>

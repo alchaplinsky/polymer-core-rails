@@ -12,11 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 will be collapsed.  Use `opened` to show/hide the content.
 
     <button on-click="{{toggle}}">toggle collapse</button>
-    
+
     <core-collapse id="collapse"></core-collapse>
       ...
     </core-collapse>
-    
+
     ...
 
     toggle: function() {
@@ -26,10 +26,7 @@ will be collapsed.  Use `opened` to show/hide the content.
 @group Polymer Core Elements
 @element core-collapse
 -->
-
-<link rel="import" href="../polymer/polymer.html">
-
-<link rel="stylesheet" href="core-collapse.css" shim-shadowdom>
+<%= stylesheet_link_tag "core-collapse/core-collapse", 'shim-shadowdom' => true%>
 
 <polymer-element name="core-collapse" attributes="target horizontal opened duration fixedSize">
 <template>
@@ -43,7 +40,7 @@ will be collapsed.  Use `opened` to show/hide the content.
     /**
      * Fired when the target element has been resized as a result of the opened
      * state changing.
-     * 
+     *
      * @event core-resize
     */
 
@@ -85,7 +82,7 @@ will be collapsed.  Use `opened` to show/hide the content.
 
     /**
      * If true, the size of the target element is fixed and is set
-     * on the element.  Otherwise it will try to 
+     * on the element.  Otherwise it will try to
      * use auto to determine the natural size to use
      * for collapsing/expanding.
      *
@@ -98,7 +95,7 @@ will be collapsed.  Use `opened` to show/hide the content.
     created: function() {
       this.transitionEndListener = this.transitionEnd.bind(this);
     },
-    
+
     ready: function() {
       this.target = this.target || this;
     },
@@ -196,7 +193,7 @@ will be collapsed.  Use `opened` to show/hide the content.
         return;
       }
       if (!this.isTargetReady) {
-        this.targetChanged(); 
+        this.targetChanged();
       }
       this.horizontalChanged();
       this[this.opened ? 'show' : 'hide']();

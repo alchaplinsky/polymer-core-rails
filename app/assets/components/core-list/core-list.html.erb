@@ -8,13 +8,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-list` displays a virtual, 'infinite' list. The template inside the 
+`core-list` displays a virtual, 'infinite' list. The template inside the
 `core-list` element represents the dom to create for each list item. The
 `data` property specifies an array of list item data. The `height` property
 represents the height of a list item.
 
-By default, the list supports selection via tapping. Styling the selection 
-should be done via binding. The `selectedProperty` property is set on the 
+By default, the list supports selection via tapping. Styling the selection
+should be done via binding. The `selectedProperty` property is set on the
 list view data for each selected item.
 
 `core-list` manages a viewport of data based on the current scroll position.
@@ -29,31 +29,31 @@ For performance reasons, not every item in the list is rendered at once.
 @group Polymer Core Elements
 @element core-list
 -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../core-selection/core-selection.html">
+
+<%= html_import_tag "core-selection/core-selection" %>
 
 <polymer-element name="core-list" on-tap="{{tapHandler}}">
 <template>
   <core-selection id="selection" multi="{{multi}}" on-core-select="{{selectedHandler}}"></core-selection>
-  <link rel="stylesheet" href="core-list.css">
+  <%= stylesheet_link_tag "core-list/core-list"%>
   <div id="viewport" class="core-list-viewport"><content></content></div>
 </template>
 <script>
 (function() {
 
   Polymer('core-list', {
-    
+
     publish: {
       /**
        * Fired when an item element is tapped.
-       * 
+       *
        * @event core-activate
        * @param {Object} detail
        *   @param {Object} detail.item the item element
        */
 
       /**
-       * 
+       *
        * An array of source data for the list to display.
        *
        * @attribute data
@@ -63,7 +63,7 @@ For performance reasons, not every item in the list is rendered at once.
       data: null,
 
       /**
-       * 
+       *
        * An optional element on which to listen for scroll events.
        *
        * @attribute scrollTarget
@@ -73,7 +73,7 @@ For performance reasons, not every item in the list is rendered at once.
       scrollTarget: null,
 
       /**
-       * 
+       *
        * The height of a list item. `core-list` currently supports only fixed-height
        * list items. This height must be specified via the height property.
        *
@@ -84,7 +84,7 @@ For performance reasons, not every item in the list is rendered at once.
       height: 80,
 
       /**
-       * 
+       *
        * The number of extra items rendered above the minimum set required to
        * fill the list's height.
        *
@@ -95,8 +95,8 @@ For performance reasons, not every item in the list is rendered at once.
       extraItems: 30,
 
       /**
-       * 
-       * The property set on the list view data to represent selection state. 
+       *
+       * The property set on the list view data to represent selection state.
        * This should set so that it does not conflict with other data properties.
        * Note, selection data is not stored on the data in given in the data property.
        *
@@ -108,7 +108,7 @@ For performance reasons, not every item in the list is rendered at once.
 
       // TODO(sorvell): experimental
       /**
-       * 
+       *
        * If true, data is sync'd from the list back to the list's data.
        *
        * @attribute sync
@@ -118,7 +118,7 @@ For performance reasons, not every item in the list is rendered at once.
       sync: false,
 
       /**
-       * 
+       *
        * Set to true to support multiple selection.
        *
        * @attribute multi
@@ -128,7 +128,7 @@ For performance reasons, not every item in the list is rendered at once.
       multi: false
 
     },
-    
+
     observe: {
       'data template scrollTarget': 'initialize'
     },
@@ -142,7 +142,7 @@ For performance reasons, not every item in the list is rendered at once.
       this.template = this.querySelector('template');
     },
 
-    // TODO(sorvell): it'd be nice to dispense with 'data' and just use 
+    // TODO(sorvell): it'd be nice to dispense with 'data' and just use
     // template repeat's model. However, we need tighter integration
     // with TemplateBinding for this.
     initialize: function() {
@@ -218,7 +218,7 @@ For performance reasons, not every item in the list is rendered at once.
     // experimental: push physical data back to this.data.
     // this is optional when scrolling and needs to be called at other times.
     syncData: function() {
-      if (this.firstPhysicalIndex === undefined || 
+      if (this.firstPhysicalIndex === undefined ||
           this.baseVirtualIndex === undefined) {
         return;
       }
@@ -249,16 +249,16 @@ For performance reasons, not every item in the list is rendered at once.
       var firstVisibleIndex = Math.floor(this._scrollTop / this.height);
       var visibleMidpoint = firstVisibleIndex + this._visibleCount / 2;
 
-      var firstReifiedIndex = Math.max(0, Math.floor(visibleMidpoint - 
+      var firstReifiedIndex = Math.max(0, Math.floor(visibleMidpoint -
           this._physicalCount / 2));
-      firstReifiedIndex = Math.min(firstReifiedIndex, this.data.length - 
+      firstReifiedIndex = Math.min(firstReifiedIndex, this.data.length -
           this._physicalCount);
 
       var firstPhysicalIndex = firstReifiedIndex % this._physicalCount;
       var baseVirtualIndex = firstReifiedIndex - firstPhysicalIndex;
 
       var baseTransformValue = Math.floor(this.height * baseVirtualIndex);
-      var nextTransformValue = Math.floor(baseTransformValue + 
+      var nextTransformValue = Math.floor(baseTransformValue +
           this._physicalHeight);
 
       var baseTransformString = 'translate3d(0,' + baseTransformValue + 'px,0)';
@@ -320,7 +320,7 @@ For performance reasons, not every item in the list is rendered at once.
      * Select the list item at the given index.
      *
      * @method selectItem
-     * @param {number} index 
+     * @param {number} index
      */
     selectItem: function(index) {
       var data = this.data[index];
@@ -333,8 +333,8 @@ For performance reasons, not every item in the list is rendered at once.
      * Set the selected state of the list item at the given index.
      *
      * @method setItemSelected
-     * @param {number} index 
-     * @param {boolean} isSelected 
+     * @param {number} index
+     * @param {boolean} isSelected
      */
     setItemSelected: function(index, isSelected) {
       var data = this.data[index];

@@ -7,8 +7,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-
 <style>
   core-drag-avatar {
     position: fixed;
@@ -48,8 +46,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     coordinatesChanged: function() {
       var x = this.x, y = this.y;
-      this.avatar.style.transform = 
-        this.avatar.style.webkitTransform = 
+      this.avatar.style.transform =
+        this.avatar.style.webkitTransform =
           'translate(' + x + 'px, ' + y + 'px)';
     },
 

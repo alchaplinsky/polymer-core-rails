@@ -7,8 +7,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-
 <!--
 The `core-field` supplies a horizontal layout, anticipating an input.
 
@@ -26,8 +24,7 @@ Example:
 -->
 <polymer-element name="core-field" noscript center horizontal layout>
 <template>
-
-  <link rel="stylesheet" href="core-field.css">
+  <%= stylesheet_link_tag "core-field/core-field" %>
 
   <content select="*"></content>
 
