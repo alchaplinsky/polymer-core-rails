@@ -52,6 +52,8 @@ to explicitly require any of dependencies, otherwise it will raise exception.
 * [core-drawer-panel](http://www.polymer-project.org/docs/elements/core-elements.html#core-drawer-panel)
 * [core-field](http://www.polymer-project.org/docs/elements/core-elements.html#core-field)
 * [core-header-panel](http://www.polymer-project.org/docs/elements/core-elements.html#core-header-panel)
+* [core-icon](http://www.polymer-project.org/docs/elements/core-elements.html#core-icon)
+* [core-icon-button](http://www.polymer-project.org/docs/elements/core-elements.html#core-icon-button)
 * [core-input](http://www.polymer-project.org/docs/elements/core-elements.html#core-input)
 * [core-list](http://www.polymer-project.org/docs/elements/core-elements.html#core-list)
 * [core-localstorage](http://www.polymer-project.org/docs/elements/core-elements.html#core-localstorage)

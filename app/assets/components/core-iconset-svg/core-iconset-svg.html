@@ -46,8 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * @homepage github.io
  */
 -->
-
-<link rel="import" href="../core-iconset/core-iconset.html">
+<%= html_import_tag "core-iconset/core-iconset" %>
 
 <polymer-element name="core-iconset-svg" extends="core-meta" attributes="iconSize">
 
@@ -140,15 +139,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         svg.style.display = 'block';
         root.insertBefore(svg, root.firstElementChild);
       },
-      
+
       /**
        * Tell users of the iconset, that the set has loaded.
-       * This finds all elements matching the selector argument and calls 
+       * This finds all elements matching the selector argument and calls
        * the method argument on them.
        * @method updateIcons
-       * @param selector {string} css selector to identify iconset users, 
+       * @param selector {string} css selector to identify iconset users,
        * defaults to '[icon]'
-       * @param method {string} method to call on found elements, 
+       * @param method {string} method to call on found elements,
        * defaults to 'updateIcon'
        */
       updateIcons: function(selector, method) {
@@ -162,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-      
+
 
     });
 
