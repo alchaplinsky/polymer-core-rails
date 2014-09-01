@@ -6,6 +6,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
 -->
+<link rel="import" href="../polymer/polymer.html">
 
 <!--
 `core-signals` provides basic publish-subscribe functionality.
@@ -18,13 +19,13 @@ To send a signal, fire a custom event of type `core-signal`, with
 a detail object containing `name` and `data` fields.
 
     this.fire('core-signal', {name: 'hello', data: null});
-
-To receive a signal, listen for `core-signal-<name>` event on a
+    
+To receive a signal, listen for `core-signal-<name>` event on a 
 `core-signal` element.
 
   <core-signal on-core-signal-hello="{{helloSignal}}">
 
-You can fire a signal event from anywhere, and all
+You can fire a signal event from anywhere, and all 
 `core-signal` elements will receive the event, regardless
 of where they are in DOM.
 
@@ -36,7 +37,7 @@ of where they are in DOM.
 <polymer-element name="core-signals">
 <script>
 (function(){
-
+  
   Polymer({
     attached: function() {
       signals.push(this);
@@ -58,7 +59,7 @@ of where they are in DOM.
     var signal = new CustomEvent('core-signal-' + name, {
       // if signals bubble, it's easy to get confusing duplicates
       // (1) listen on a container on behalf of local child
-      // (2) some deep child ignores the event and it bubbles
+      // (2) some deep child ignores the event and it bubbles 
       //     up to said container
       // (3) local child event bubbles up to container
       // also, for performance, we avoid signals flying up the
@@ -77,7 +78,7 @@ of where they are in DOM.
   document.addEventListener('core-signal', function(e) {
     notify(e.detail.name, e.detail.data);
   });
-
+  
 })();
 </script>
 </polymer-element>

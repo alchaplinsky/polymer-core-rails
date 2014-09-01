@@ -8,8 +8,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-The `core-range` element is used for managing a numberic value within a given
-range.  It has no visual appearance and is typically used in conjunciton with
+The `core-range` element is used for managing a numeric value within a given 
+range.  It has no visual appearance and is typically used in conjunction with 
 another element.
 
 One can build a progress bar using `core-range` like this:
@@ -23,12 +23,13 @@ One can build a progress bar using `core-range` like this:
 
 -->
 
+<link rel="import" href="../polymer/polymer.html">
 
 <polymer-element name="core-range" attributes="value min max step ratio">
 <script>
 
   Polymer('core-range', {
-
+    
     /**
      * The number that represents the current value.
      *
@@ -37,7 +38,7 @@ One can build a progress bar using `core-range` like this:
      * @default 0
      */
     value: 0,
-
+    
     /**
      * The number that indicates the minimum value of the range.
      *
@@ -46,7 +47,7 @@ One can build a progress bar using `core-range` like this:
      * @default 0
      */
     min: 0,
-
+    
     /**
      * The number that indicates the maximum value of the range.
      *
@@ -55,7 +56,7 @@ One can build a progress bar using `core-range` like this:
      * @default 100
      */
     max: 100,
-
+    
     /**
      * Specifies the value granularity of the range's value.
      *
@@ -64,7 +65,7 @@ One can build a progress bar using `core-range` like this:
      * @default 1
      */
     step: 1,
-
+    
     /**
      * Returns the ratio of the value.
      *
@@ -73,35 +74,35 @@ One can build a progress bar using `core-range` like this:
      * @default 0
      */
     ratio: 0,
-
+    
     observe: {
       'value min max step': 'update'
     },
-
+    
     calcRatio: function(value) {
       return (this.clampValue(value) - this.min) / (this.max - this.min);
     },
-
+    
     clampValue: function(value) {
       return Math.min(this.max, Math.max(this.min, this.calcStep(value)));
     },
-
+    
     calcStep: function(value) {
       return this.step ? (Math.round(value / this.step) / (1 / this.step)) : value;
     },
-
+    
     validateValue: function() {
       var v = this.clampValue(this.value);
       this.value = this.oldValue = isNaN(v) ? this.oldValue : v;
       return this.value !== v;
     },
-
+    
     update: function() {
       this.validateValue();
       this.ratio = this.calcRatio(this.value) * 100;
     }
-
+    
   });
-
+  
 </script>
 </polymer-element>
