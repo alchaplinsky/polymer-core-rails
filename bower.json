@@ -2,6 +2,6 @@
   "name": "polymer-core-rails",
   "private": true,
   "dependencies": {
-    "core-elements": "Polymer/core-elements#0.4.0"
+    "core-elements": "Polymer/core-elements#0.5.1"
   }
 }
