@@ -7,6 +7,7 @@
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+
 <link rel="import" href="elements/core-doc-page.html">
 <link rel="import" href="elements/core-doc-toc.html">
 <link rel="import" href="../core-icon/core-icon.html">
@@ -26,7 +27,7 @@ Markdown format is supported.
 
 ### Links
 
-Arbitrary links can be encoded using [standard markdown format](http://daringfireball.net/projects/markdown/syntax).
+Arbitrary links can be encoded using [standard markdown format](http://daringfireball.net/projects/markdown/syntax). 
 [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) is also supported.
 
 Links to other topics can be made with hash-links [core-doc-viewer](#core-doc-viewer).
@@ -36,9 +37,9 @@ Links to other topics can be made with hash-links [core-doc-viewer](#core-doc-vi
 Example
 
     Four space indents indicate code blocks.
-
+    
     <code>blocks are syntax highlighted</code>
-
+    
     <script>
       while(true) {
         javascript('is highlighted also');
@@ -48,15 +49,15 @@ Example
 ### Blockquote
 
  > Blockquote is supported for long text that needs to wrap with a common left side indent.
- > Blockquote is supported for long text that needs to wrap with a common left side indent.
+ > Blockquote is supported for long text that needs to wrap with a common left side indent.  
 
 ### Lists
-
+ 
 1.  enumerated
 1.  lists
-
+ 
 Use - or + for bullet points:
-
+ 
 - bullet
 - lists
 
@@ -104,7 +105,7 @@ Arbitrary HTML is also supported
 
   <script>
 
-    Polymer('core-doc-viewer', {
+    Polymer({
       /**
        * A single file to parse for docs
        *
@@ -147,7 +148,13 @@ Arbitrary HTML is also supported
       validateRoute: function() {
         if (this.route) {
           this.classes.some(function(c) {
-            if (c.name === this.route) {
+            // The URL fragment might be just a class name,
+            // or it might be a class name followed by a '.' and then
+            // a section of the page.
+            // We want to match on class names here, so split on '.'.
+            // E.g.: 'core-ajax.properties.xhrArgs' -> 'core-ajax'
+            //       'core-xhr' -> 'core-xhr'
+            if (c.name === this.route.split('.')[0]) {
               this.data = c;
               this.route = '';
               return;
@@ -156,12 +163,47 @@ Arbitrary HTML is also supported
         }
       },
 
-      selectedChanged: function() {
+      selectedChanged: function() { 
         this.data = this.classes[this.selected];
       },
 
-      parserDataReady: function(event) {
-        this.assimilateData(event.target.data);
+      parserDataReady: function(event, detail, sender) {
+        var path = '';
+        if (this.sources.length) {
+          var path = event.target.templateInstance.model;
+          var idx = path.lastIndexOf('/');
+          path = idx != -1 ? path.substr(0, idx) : '.';
+        } else {
+          var parts = location.pathname.split('/');
+          parts.pop();
+          path = parts.join('/');
+        }
+
+        var data = event.target.data;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', path + '/bower.json');
+
+        xhr.onerror = function(e) {
+          this.assimilateData(data);
+        }.bind(this);
+
+        xhr.onloadend = function(e) {
+
+          // Add package version to data.
+          if (e.target.status == 200) {
+            var version = JSON.parse(e.target.response).version;
+            // Assumes all classes (elements) in the list are the same version.
+            for (var i = 0, c; c = data.classes[i]; ++i) {
+              c.version = version;
+            }
+          }
+
+          this.assimilateData(data);
+
+        }.bind(this);
+
+        xhr.send();
       },
 
       assimilateData: function(data) {
