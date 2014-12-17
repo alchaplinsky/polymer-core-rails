@@ -24,7 +24,7 @@ Or install it yourself as:
 ## Getting started
 
 In order to use Polymer core elements you need to have
-`polymer` installed in your project. Use [polymer-rails](https://github.com/alchapone/polymer-core-rails) gem for adding `polymer` to your Rails application.
+`polymer` installed in your project. Use [polymer-rails](https://github.com/alchapone/polymer-rails) gem for adding `polymer` to your Rails application.
 
 ```ruby
 gem 'polymer-rails'
