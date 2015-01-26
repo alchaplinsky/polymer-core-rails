@@ -35,7 +35,7 @@ After runnign `bundle install` require needed core elements into your `applicati
 
     //= require polymer/polymer
     //= require core-ajax/core-ajax
-    //= require core-input/core-intut
+    //= require core-input/core-input
     .....
     //= require core-tooltip/core-tooltip
 
