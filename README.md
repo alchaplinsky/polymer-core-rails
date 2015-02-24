@@ -44,6 +44,7 @@ to explicitly require any of dependencies, otherwise it will raise exception.
 
 ## Available elements
 
+* [core-a11y-keys](http://www.polymer-project.org/docs/elements/core-elements.html#core-a11y-keys)
 * [core-ajax](http://www.polymer-project.org/docs/elements/core-elements.html#core-ajax)
 * [core-animated-pages](http://www.polymer-project.org/docs/elements/core-elements.html#core-animated-pages)
 * [core-animation](http://www.polymer-project.org/docs/elements/core-elements.html#core-animation)
@@ -71,7 +72,7 @@ to explicitly require any of dependencies, otherwise it will raise exception.
 * [core-style](http://www.polymer-project.org/docs/elements/core-elements.html#core-style)
 * [core-toolbar](http://www.polymer-project.org/docs/elements/core-elements.html#core-toolbar)
 * [core-tooltip](http://www.polymer-project.org/docs/elements/core-elements.html#core-tooltip)
-
+* [core-transition](http://www.polymer-project.org/docs/elements/core-elements.html#core-transition)
 
 ## Contributing
 
