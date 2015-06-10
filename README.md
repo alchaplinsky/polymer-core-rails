@@ -1,5 +1,8 @@
 # PolymerCoreRails
 
+#### Since Polymer 1.0 release core-elements are now iron-elements. To use iron elements see [polymer-iron-rails](https://github.com/alchapone/polymer-iron-rails)
+
+
 Polymer Core elements are a set of utility elements including general-purpose UI elements (such as icons, layout elements,
 and toolbars), as well as non-UI elements providing features like AJAX, signaling and storage.
 
