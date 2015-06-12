@@ -34,7 +34,7 @@ gem 'polymer-rails'
 gem 'polymer-core-rails'
 ```
 
-After runnign `bundle install` require needed core elements into your `application.html` manifest file.
+After running `bundle install` require needed core elements into your `application.html` manifest file.
 
     //= require polymer/polymer
     //= require core-ajax/core-ajax
